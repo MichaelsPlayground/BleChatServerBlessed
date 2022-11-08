@@ -1,4 +1,4 @@
-package de.androidcrypto.bleserverblessedpart4;
+package de.androidcrypto.blechatserverblessed;
 
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
@@ -24,9 +24,7 @@ import com.welie.blessed.ReadResponse;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
@@ -264,18 +262,22 @@ class BluetoothServer {
         this.peripheralManager.removeAllServices();
 
         DeviceInformationService deviceInformationService = new DeviceInformationService(peripheralManager);
-        CurrentTimeService currentTimeService = new CurrentTimeService(peripheralManager);
-        HeartRateService heartRateService = new HeartRateService(peripheralManager);
+        //CurrentTimeService currentTimeService = new CurrentTimeService(peripheralManager);
+        //HeartRateService heartRateService = new HeartRateService(peripheralManager);
         serviceImplementations.put(deviceInformationService.getService(), deviceInformationService);
-        serviceImplementations.put(currentTimeService.getService(), currentTimeService);
-        serviceImplementations.put(heartRateService.getService(), heartRateService);
-
+        //serviceImplementations.put(currentTimeService.getService(), currentTimeService);
+        //serviceImplementations.put(heartRateService.getService(), heartRateService);
         // new in part 3
         BatteryService batteryService = new BatteryService(peripheralManager, mContext);
         serviceImplementations.put(batteryService.getService(), batteryService);
 
+        // new in chat
+        ChatService chatService = new ChatService(peripheralManager, mContext);
+        serviceImplementations.put(chatService.getService(), chatService);
+
         setupServices();
-        startAdvertising(heartRateService.getService().getUuid());
+        //startAdvertising(heartRateService.getService().getUuid());
+        startAdvertising(chatService.getService().getUuid());
 
     }
 
