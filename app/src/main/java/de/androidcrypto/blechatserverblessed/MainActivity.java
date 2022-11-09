@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     // new in part 3
     com.google.android.material.textfield.TextInputEditText batteryLevel;
     // new in part 4
-    com.google.android.material.textfield.TextInputEditText connectedDevices;
+    com.google.android.material.textfield.TextInputEditText receivedMessage;
 
     private static final int REQUEST_ENABLE_BT = 1;
     private static final int ACCESS_LOCATION_REQUEST = 2;
@@ -56,19 +56,19 @@ public class MainActivity extends AppCompatActivity {
         registerReceiver(subscriptionStateReceiver, new IntentFilter((BluetoothServer.BLUETOOTH_SERVER_SUBSCRIPTION)));
         // new in part 3
         registerReceiver(batteryLevelStateReceiver, new IntentFilter((BatteryService.BLUETOOTH_SERVER_BATTERY_LEVEL)));
-        // new in part 4
-        registerReceiver(connectedDevicesStateReceiver, new IntentFilter((BluetoothServer.BLUETOOTH_SERVER_CONNECTED_DEVICES)));
+        // new in chat
+        registerReceiver(receivedMessageStateReceiver, new IntentFilter((BluetoothServer.BLUETOOTH_CHAT)));
 
         // new in part 2
         bluetoothEnabled = findViewById(R.id.swMainBleEnabled);
         advertisingActive = findViewById(R.id.swMainAdvertisingActive);
         deviceConnected = findViewById(R.id.swMainDeviceConnected);
         subscriptionsEnabled = findViewById(R.id.swMainSubscriptionsEnabled);
-        connectionLog = findViewById(R.id.etMainConnectionLog);
+        //connectionLog = findViewById(R.id.etMainConnectionLog);
         // new in part 3
         batteryLevel = findViewById(R.id.etMainBatteryLevel);
-        // new in part 4
-        connectedDevices = findViewById(R.id.etMainConnectedDevices);
+        // new in chat
+        receivedMessage = findViewById(R.id.etMainReceivedMessage);
 
         // this is for debug purposes - it leaves the screen on
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -98,8 +98,8 @@ public class MainActivity extends AppCompatActivity {
         unregisterReceiver(subscriptionStateReceiver);
         // new in part 3
         unregisterReceiver(batteryLevelStateReceiver);
-        // new in part 4
-        unregisterReceiver(connectedDevicesStateReceiver);
+        // new in chat
+        unregisterReceiver(receivedMessageStateReceiver);
     }
 
     private boolean isBluetoothEnabled() {
@@ -255,8 +255,8 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 deviceConnected.setChecked(false);
             }
-            String newConnectionLog = dataStatus + "\n" + connectionLog.getText().toString();
-            connectionLog.setText(newConnectionLog);
+            //String newConnectionLog = dataStatus + "\n" + connectionLog.getText().toString();
+            //connectionLog.setText(newConnectionLog);
         }
     };
 
@@ -289,15 +289,13 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    // new in part 4
-    private final BroadcastReceiver connectedDevicesStateReceiver = new BroadcastReceiver() {
+    // new in chat
+    private final BroadcastReceiver receivedMessageStateReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            String dataStatus = intent.getStringExtra(BluetoothServer.BLUETOOTH_SERVER_CONNECTED_DEVICES_EXTRA);
+            String dataStatus = intent.getStringExtra(ChatService.BLUETOOTH_CHAT_EXTRA);
             if (dataStatus == null) return;
-            String resultString = "These devices are connected:\n" +
-                    dataStatus;
-            connectedDevices.setText(resultString);
+            receivedMessage.setText(dataStatus);
         }
     };
 }

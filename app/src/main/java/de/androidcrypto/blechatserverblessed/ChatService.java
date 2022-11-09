@@ -81,6 +81,7 @@ class ChatService extends BaseService {
         if (characteristic.getUuid().equals(BLUETOOTH_CHAT_CHARACTERISTIC_UUID)) {
             currentMessage = new String(value, StandardCharsets.UTF_8);
             notifyCharacteristicChanged(value, characteristic);
+            sendReceivedMessageToUi(value);
         }
         return super.onCharacteristicWrite(central, characteristic, value);
     }
@@ -128,11 +129,11 @@ class ChatService extends BaseService {
     }
 */
 
-    private void sendBatteryLevelToUi(byte[] value) {
+    private void sendReceivedMessageToUi(byte[] value) {
         BluetoothBytesParser parser = new BluetoothBytesParser(value);
-        String valueString = parser.getIntValue(FORMAT_UINT8).toString();
-        Intent intent = new Intent(BLUETOOTH_SERVER_BATTERY_LEVEL);
-        intent.putExtra(BLUETOOTH_SERVER_BATTERY_LEVEL_EXTRA, valueString);
+        String valueString = parser.getStringValue();
+        Intent intent = new Intent(BLUETOOTH_CHAT);
+        intent.putExtra(BLUETOOTH_CHAT_EXTRA, valueString);
         mContext.sendBroadcast(intent);
     }
 

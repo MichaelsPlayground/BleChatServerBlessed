@@ -51,6 +51,11 @@ class BluetoothServer {
     public static final String BLUETOOTH_SERVER_CONNECTED_DEVICES_EXTRA = "androidcrypto.bluetoothserver.connecteddevices.extra";
     String connectedDevicesString = "";
 
+    // new in chat
+    // receive chat messages
+    public static final String BLUETOOTH_CHAT = "androidcrypto.bluetooth.chat";
+    public static final String BLUETOOTH_CHAT_EXTRA = "androidcrypto.bluetooth.chat.extra";
+
     public static synchronized BluetoothServer getInstance(Context context) {
         mContext = context; // new in part 2
         if (instance == null) {
