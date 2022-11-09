@@ -15,19 +15,19 @@
         android:layout_marginTop="24dp"
         android:layout_marginRight="24dp"
         android:text="This is the Bluetooth Low Energy server based on the blessed-android library."
-        android:textSize="18sp" />
+        android:textSize="16sp" />
 
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/swMainBleEnabled"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
         android:checked="false"
         android:clickable="false"
         android:text="Bluetooth is enabled"
-        android:textSize="18sp" />
+        android:textSize="14sp" />
 
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/swMainAdvertisingActive"
@@ -39,7 +39,7 @@
         android:checked="false"
         android:clickable="false"
         android:text="Advertising is active"
-        android:textSize="18sp" />
+        android:textSize="14sp" />
 
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/swMainDeviceConnected"
@@ -51,7 +51,7 @@
         android:checked="false"
         android:clickable="false"
         android:text="Device is connected"
-        android:textSize="18sp" />
+        android:textSize="14sp" />
 
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/swMainSubscriptionsEnabled"
@@ -63,7 +63,7 @@
         android:checked="false"
         android:clickable="false"
         android:text="Subscriptions are enabled"
-        android:textSize="18sp" />
+        android:textSize="14sp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/etMainBatteryLevelLayout"
@@ -71,7 +71,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
         android:hint="Battery Level on server"
         android:visibility="visible"
@@ -101,7 +101,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
         android:hint="connected devices"
         android:visibility="visible"
@@ -131,7 +131,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
         android:hint="received message"
         android:visibility="visible"
