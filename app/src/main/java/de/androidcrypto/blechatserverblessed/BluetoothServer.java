@@ -51,11 +51,6 @@ class BluetoothServer {
     public static final String BLUETOOTH_SERVER_CONNECTED_DEVICES_EXTRA = "androidcrypto.bluetoothserver.connecteddevices.extra";
     String connectedDevicesString = "";
 
-    // new in chat
-    // receive chat messages
-    public static final String BLUETOOTH_CHAT = "androidcrypto.bluetooth.chat";
-    public static final String BLUETOOTH_CHAT_EXTRA = "androidcrypto.bluetooth.chat.extra";
-
     public static synchronized BluetoothServer getInstance(Context context) {
         mContext = context; // new in part 2
         if (instance == null) {
@@ -267,11 +262,8 @@ class BluetoothServer {
         this.peripheralManager.removeAllServices();
 
         DeviceInformationService deviceInformationService = new DeviceInformationService(peripheralManager);
-        //CurrentTimeService currentTimeService = new CurrentTimeService(peripheralManager);
-        //HeartRateService heartRateService = new HeartRateService(peripheralManager);
         serviceImplementations.put(deviceInformationService.getService(), deviceInformationService);
-        //serviceImplementations.put(currentTimeService.getService(), currentTimeService);
-        //serviceImplementations.put(heartRateService.getService(), heartRateService);
+
         // new in part 3
         BatteryService batteryService = new BatteryService(peripheralManager, mContext);
         serviceImplementations.put(batteryService.getService(), batteryService);
@@ -281,7 +273,6 @@ class BluetoothServer {
         serviceImplementations.put(chatService.getService(), chatService);
 
         setupServices();
-        //startAdvertising(heartRateService.getService().getUuid());
         startAdvertising(chatService.getService().getUuid());
 
     }

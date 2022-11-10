@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         registerReceiver(batteryLevelStateReceiver, new IntentFilter((BatteryService.BLUETOOTH_SERVER_BATTERY_LEVEL)));
         registerReceiver(connectedDevicesStateReceiver, new IntentFilter((BluetoothServer.BLUETOOTH_SERVER_CONNECTED_DEVICES)));
         // new in chat
-        registerReceiver(receivedMessageStateReceiver, new IntentFilter((BluetoothServer.BLUETOOTH_CHAT)));
+        registerReceiver(receivedMessageStateReceiver, new IntentFilter((ChatService.BLUETOOTH_CHAT)));
 
         // new in part 2
         bluetoothEnabled = findViewById(R.id.swMainBleEnabled);
